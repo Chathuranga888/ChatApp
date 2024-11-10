@@ -6,8 +6,18 @@
     <title>CHATAPP</title>
 </head>
 <body>
-    <h1>
-        <%= content %>
-    </h1>
+    <h1>Enter Your location here</h1>
+    <form action="/" method="POST">
+        <label for="zipcode">Enter Zip Code</label>
+        <input type="text" id="zipcode" name="zipcode">
+        <button type="submit">Submit</button>
+    </form>
+
+    <% if(City && Lat && Lon) {%>
+        <h2>City: <%= City %></h2>
+        <h2>Lat: <%= Lat %></h2>
+        <h2>Lon: <%= Lon %></h2>
+    <% } %>
+
 </body>
 </html>

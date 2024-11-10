@@ -13,10 +13,10 @@
         <button type="submit">Submit</button>
     </form>
 
-    <% if(City && Lat && Lon) {%>
-        <h2>City: <%= City %></h2>
-        <h2>Lat: <%= Lat %></h2>
-        <h2>Lon: <%= Lon %></h2>
+    <% if(message && City) {%>
+        <h2>Your city is : <%= City %></h2>
+        <h2>Notification: <%= message %></h2>
+
     <% } %>
 
 </body>

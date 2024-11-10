@@ -2,6 +2,7 @@ import express from "express";
 import axios from "axios";
 import bodyparser from "body-parser";
 import dotenv from "dotenv";
+import {addDays, format} from 'date-fns';
 
 dotenv.config();
 const app = express();
@@ -12,9 +13,7 @@ app.use(bodyparser.urlencoded({ extended: true}));
 
 app.get("/", (req,res) => {
   res.render("index.ejs", {
-    City: null,
-    Lat: null,
-    Lon: null
+    message: null
   });
 });
 
@@ -23,28 +22,39 @@ app.post("/",async(req,res) => {
 
   try {
     let zipCode = req.body.zipcode;
-    // console.log(zipCode);
     const apiKey = process.env.API_KEY;
-    console.log(apiKey);
 
-    const response = await axios.get(`http://api.openweathermap.org/geo/1.0/zip?zip=${zipCode},LK&appid=${apiKey}`);
-    const result = response.data;
-    // console.log(result);
+    const response1 = await axios.get(`http://api.openweathermap.org/geo/1.0/zip?zip=${zipCode},LK&appid=${apiKey}`);
+    const result = response1.data;
     let city = result.name;
-    // console.log(city);
     let lat = result.lat;
-    // console.log(lat);
     let lon = result.lon;
+    // console.log(lat);
     // console.log(lon);
+
+    // taking tommorow date
+    const getTommorowDate = () => {
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      return tomorrow.toISOString().split('T')[0];
+    }
+
+    // console.log(getTommorowDate());
+
+    const response2 = await axios.get(`https://api.openweathermap.org/data/3.0/onecall/overview?lat=${lat}&lon=${lon}&appid=${apiKey}&date=${getTommorowDate()}`);
+    const result2 = response2.data;
+
+    // console.log(result2.weather_overview);
+
     res.render("index.ejs", {
-      City: city,
-      Lat: lat,
-      Lon: lon 
+      message : result2.weather_overview,
+      City: city
     });
+
   } catch (error) {
     console.error("Failed to make request:", error.message);
     res.render("index.ejs", {
-      content: error.message,})
+      message: error.message,})
   }
 });
 

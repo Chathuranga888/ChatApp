@@ -21,14 +21,18 @@ app.post("/",async(req,res) => {
   console.log(req.body);
 
   try {
-    let zipCode = req.body.zipcode;
+    let city = req.body.city;
     const apiKey = process.env.API_KEY;
 
-    const response1 = await axios.get(`http://api.openweathermap.org/geo/1.0/zip?zip=${zipCode},LK&appid=${apiKey}`);
+    console.log(city);
+
+    // const response1 = await axios.get(`http://api.openweathermap.org/geo/1.0/zip?zip=${zipCode},LK&appid=${apiKey}`);
+    const response1 = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${city},LK&appid=${apiKey}`);
     const result = response1.data;
-    let city = result.name;
-    let lat = result.lat;
-    let lon = result.lon;
+    console.log(result);
+    // let city = result.name;
+    let lat = result[0].lat;
+    let lon = result[0].lon;
     // console.log(lat);
     // console.log(lon);
 

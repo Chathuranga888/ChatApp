@@ -6,15 +6,14 @@
     <title>CHATAPP</title>
 </head>
 <body>
-    <h1>Enter Your location here</h1>
+    <h1>Enter Your City Name Here</h1>
     <form action="/" method="POST">
-        <label for="zipcode">Enter Zip Code</label>
-        <input type="text" id="zipcode" name="zipcode">
+        <label for="city">City Name</label>
+        <input type="text" id="city" name="city">
         <button type="submit">Submit</button>
     </form>
 
-    <% if(message && City) {%>
-        <h2>Your city is : <%= City %></h2>
+    <% if(message) {%>
         <h2>Notification: <%= message %></h2>
 
     <% } %>

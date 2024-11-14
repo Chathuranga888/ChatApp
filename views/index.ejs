@@ -3,20 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHATAPP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Weather App</title>
 </head>
 <body>
-    <h1>Enter Your City Name Here</h1>
-    <form action="/wether-report" method="POST">
-        <label for="city">City Name</label>
-        <input type="text" id="city" name="city" placeholder="Enter your city">
-        <label for="date">Date</label>
-        <select name="date" id="date">
-            <option value="today">Today</option>
-            <option value="tommorow">Tommorow</option>
-        </select>
-        <button type="submit">Submit</button>
-    </form>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Enter Your City Name Here</h1>
+        <form action="/wether-report" method="POST" class="p-4 border rounded shadow-sm">
+            <div class="row mb-3">
+                <!-- City Name Input -->
+                <div class="col-md-6">
+                    <label for="city" class="form-label">City Name</label>
+                    <input type="text" id="city" name="city" class="form-control" placeholder="Enter your city">
+                </div>
+                <!-- Date Selection -->
+                <div class="col-md-6">
+                    <label for="date" class="form-label">Date</label>
+                    <select name="date" id="date" class="form-select">
+                        <option value="today">Today</option>
+                        <option value="tomorrow">Tomorrow</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Submit Button -->
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary w-100">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

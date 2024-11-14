@@ -7,16 +7,16 @@
 </head>
 <body>
     <h1>Enter Your City Name Here</h1>
-    <form action="/" method="POST">
+    <form action="/wether-report" method="POST">
         <label for="city">City Name</label>
-        <input type="text" id="city" name="city">
+        <input type="text" id="city" name="city" placeholder="Enter your city">
+        <label for="date">Date</label>
+        <select name="date" id="date">
+            <option value="today">Today</option>
+            <option value="tommorow">Tommorow</option>
+        </select>
         <button type="submit">Submit</button>
     </form>
-
-    <% if(message) {%>
-        <h2>Notification: <%= message %></h2>
-
-    <% } %>
 
 </body>
 </html>
